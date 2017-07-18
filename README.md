@@ -1,3 +1,5 @@
+This fork has a different fontsize that the original.
+
 # React Native Ultra Picker iOS
 
 A multiple column (component) UIPickerView component 
