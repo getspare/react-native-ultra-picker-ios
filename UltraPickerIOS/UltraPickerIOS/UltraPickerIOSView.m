@@ -45,10 +45,10 @@
     return [[self.componentsData objectAtIndex:component] count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [self labelForRow:row forComponent:component];
-}
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    return [self labelForRow:row forComponent:component];
+//}
 
 - (NSString *)labelForRow:(NSInteger)row forComponent:(NSInteger)component
 {
@@ -58,6 +58,21 @@
 - (NSString *)valueForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [[[self.componentsData objectAtIndex:component] objectAtIndex:row] valueForKey:@"value"];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel* tView = (UILabel*)view;
+    if (!tView)
+    {
+        tView = [[UILabel alloc] init];
+        [tView setFont:[UIFont systemFontOfSize:18]];
+        [tView setTextAlignment:NSTextAlignmentCenter];
+        tView.numberOfLines=3;
+    }
+    // Fill the label text here
+    tView.text=[self labelForRow:row forComponent:component];
+    return tView;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
